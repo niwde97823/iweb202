@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>REGISTRO DE CLIENTES</title>
+	<link rel='stylesheet' href='/../css/bootstrap.min.css'>
+
+</head>
+<style>
+	.titulo
+	{
+		text-align:center;
+		font-size:18px;
+	}
+	.cld1
+	{	color:rgb(0,100,200);
+		text-align:left;
+	}
+	.error
+	{
+		border-style:solid;
+		border-width:1px;
+		border-color:red;
+	}
+</style>
+
+<body onload="getmarcas()">
+	<div class='container'>
+		<div class='row'>
+			<div class='col-sm-12 titulo'>REGISTRO DE CLIENTES</div>
+		</div>
+		<div class='row'>
+			<div class='col-sm-1'>Id</div>
+			<div class='col-sm-11' id='cliente_id'>0</div>
+		</div>
+		<div class='row'>
+			<div class='col-sm-10'><input type='text' id='dni' maxlength='8' class="form-control" placeholder='DNI'"></div>
+			<div class='col-sm-2'><button class='btn btn-primary form-control' onclick='buscarxdni()'>B</button>
+			</div>
+		</div>
+		<div class='row'>
+			<div class='col-sm-12'><input type='text' id='ape' class="form-control" placeholder='Apellidos'></div>
+		</div>
+		<div class='row'>
+			<div class='col-sm-12'><input type='text' id='nom' class="form-control" placeholder='Nombres'></div>
+		</div>
+		<div class='row'>
+			<div class='col-sm-12'><input type='date' id='fec' class="form-control" placeholder='Fecha Nac.'></div>
+		</div>
+		<div class='row'>
+			<div class='col-sm-12'><input type='password' id='cla' class="form-control" placeholder='Clave'></div>
+		</div>
+		<div class='row'>
+			<div class='col-sm-12'><input type='password' id='cla1' class="form-control" placeholder='Confirmar Clave'></div>
+		</div>
+		<div class='row'>
+			<div class='col-sm-12' id='msg'></div>
+		</div>
+		<br>
+		<div class='row'>
+			<div class='col-sm-12 titulo'>
+				<button class='btn btn-default'>Nuevo</button>
+				<button class='btn btn-success' onclick='guardar()'>Guardar</button>
+				<button class='btn btn-danger' onclick="eliminar();">Eliminar</button>
+			</div>
+		</div>
+		<br>
+		<div class='row'>
+			<div class='col-sm-3' align='center'>
+				<select id='campo' class='form-control'>
+				<option value='apellidos'>Apellidos</option>
+				<option value='nombres'>Nombres</option>
+				<option value='fechanac'>Fecha Nac.</option>
+				<option value='dni'>DNI</option>
+				</select>
+			</div>
+			<div class='col-sm-3' align='center'>
+				<select id='operador' class='form-control'>
+				<option value="LIKE">Similar a</option>
+				<option value="=">Igual a</option>
+				<option value="<">Menor a</option>
+				<option value="<">Mayor a</option>
+				</select>
+			</div>
+			<div class='col-sm-3' align='center'>
+				<input type='text' id='valor' class='form-control'>
+			</div>
+			<div class='col-sm-3' align='center'>
+				<button onclick='buscar();' class='btn btn-primary form-control'>B U S C A R</button>
+			</div>
+			
+		</div>
+		<div class='row'>
+			<div class='col-sm-3'>Total Registros:</div><div class='col-sm-1' id='tregs'>0</div><div class='col-sm-3'>Registros por p&aacute;gina:</div><div class='col-sm-1'>
+			<select id='tamanho' onchange='getTotalRegs()'>
+				<option value='5'>5</option>
+				<option value='7'>7</option>
+				<option value='10'>10</option>
+				<option value='15'>15</option>
+				<option value='30'>30</option>
+			</select>
+			</div>
+		</div>
+		<div class='row'>
+			<div class='col-sm-12' id='results'></div>
+		</div>
+		<div class='row'>
+			<div class='col-sm-12' id='footer'></div>
+		</div>
+		<div id='combomarcas'>
+		</div>
+	</div>
+	
+	<script src="/../js/jquery-2.1.4.min.js"></script>
+	<script src="/../js/frmcliente1.js"></script>
+	
+</body>
+</html>

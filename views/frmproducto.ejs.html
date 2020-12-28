@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <title>Exámen</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
+      integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./css/pelicula.css">
+  </head>
+  <body>
+    <div class="container pt-2" ng-app="myapp">
+      <div class="row" ng-controller="formularios" ng-init="getDatos()">
+        <div class="card col-9 mx-auto bg-light text-dark" id="modelId">
+          <div class="card-header">REGISTRO DE PELICULAS</div>
+          <div class="card-body">
+            <div class="row">
+              <div class="form-group col-8">
+                <label>NOMBRE DE CLIENTE:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  ng-model="venta.cliente_nombre"
+                  
+                />
+              </div>
+              <div class="form-group col-4">
+                <label>DOCUMENTO:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  ng-keypress="buscaCliente($event)"
+                  ng-model="venta.cliente_doc"
+                />
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-12">
+                <label for="">NOMBRE PELÍCULA:</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  ng-model="venta.nombre_pelicula"
+                />
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-12">
+                <label for="">DESCRIPCIÓN:</label>
+                <textarea
+                  class="form-control"
+                  name=""
+                  id=""
+                  cols="15"
+                  rows="2"
+                  ng-model="producto.descripcion"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="row">
+              <div class="col-3 ml-auto">
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                  ng-click="guardarProducto()"
+                >
+                  GUARDAR
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- MODAL PARA PRODUCTO -->
+        <div class="col-12 mt-3">
+          <div class="row">
+            <div
+              class="col-xs-12 col-sm-6 col-md-4 col-lg-3"
+              ng-repeat="pelicula in peliculas"
+            >
+              <div class="image-flip">
+                <div class="mainflip flip-0">
+                  <div class="frontside">
+                    <div class="card">
+                      <div class="card-body text-center">
+                        <img
+                          class="img-fluid"
+                          src="./img/notfound.jpg"
+                          alt="card image"
+                        />
+                        <h4 class="card-title">{{pelicula.titulo}}</h4>
+                        <p class="card-text text-left">
+                          {{pelicula.anio_produccion}}/{{pelicula.duracion}}<br />
+                          {{pelicula.get_genero.nombre}}/{{pelicula.color}}<br />
+                          Dirigida por
+                          {{pelicula.get_director.nombre_completo}}<br />
+                          Producida por
+                          {{pelicula.get_productor.nombre_completo}}<br />
+                          Productora:
+                          {{pelicula.get_productora.nombre_productora}}<br />
+                          Apreciación: <br />
+                          <div class="text-custom">
+                            {{pelicula.apreciacion}}
+                          </div>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="backside">
+                    <div class="card">
+                      <div class="card-body text-center mt-4">
+                        <h4 class="card-title">{{pelicula.titulo}}</h4>
+                        <p class="card-text" style="font-size: 12px">
+                          {{pelicula.argumento}}
+                        </p>
+                        <a
+                          ng-click="elegirPelicula({{pelicula}})"
+                          class="btn btn-primary btn-sm text-white"
+                        >
+                          <span class="text-white">Ver Funciones</span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="JS/script.js"></script>
+  </body>
+</html>

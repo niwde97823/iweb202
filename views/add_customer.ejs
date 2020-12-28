@@ -1,0 +1,61 @@
+<%- include layouts/header.ejs %>
+
+        <div class="page-data">
+            
+            <form method="post" action="/customers/save" name='f'>
+                <table cellpadding="11">
+				<tr>
+                    <td class="label">Id</td><td>0</td>
+                 </tr>
+                <tr>
+                    <td class="label">DNI</td><td>: <input type="text" name="dni" maxlength='8' id='dni' required></td>
+                 </tr>
+				<tr>
+                    <td class="label">Nombre</td><td>: <input type="text" name="name" required></td>
+                 </tr>
+                 <tr>
+                    <td class="label" valign="top">Dirección</td><td valign="top">: <textarea name="address" required cols="30" rows="5"></textarea></td>
+                </tr>
+                <tr>
+                    <td class="label">Email</td><td>: <input type="text" name="email" required></td>
+                 </tr>
+                  <tr>
+                    <td class="label">Celular</td><td>: <input type="text" name="phone" required></td>
+                 </tr>
+                 <tr>
+                    <td class="label"></td>
+                    <td>
+                        &nbsp; <input type="submit" name="submit" value="Save" id='btn_save'>
+					   <input type="button" name="submit" value="Save" onclick='validar()'>	
+                       <input type="button" name="cancel" value="Cancel" class="cancel" onClick="cancelAdd()">
+                    </td>
+                 </tr>
+                </table>
+            </form>
+            
+        </div>
+
+<script>
+	$('#btn_save').hide();
+	function validar()
+	{	dni=$('#dni').val();
+		datos="dni="+dni;
+		$.ajax({
+			type:'post',
+			url:'/customers/buscardni',
+			data:datos,
+			success:function(html)
+			{
+				if(html>0)
+					alert("El dni ya está registrado...")
+				else
+				{
+					//document.f.submit;
+					$('#btn_save').trigger("click");
+				}
+			}
+		})
+	}
+</script>
+        
+<%- include layouts/footer.ejs %>

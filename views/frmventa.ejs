@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>VENTA DE PRODUCTOS</title>
+	<link rel='stylesheet' href='/../css/bootstrap.min.css'>
+</head>
+
+<body onload="limpiar()">
+	<style>
+		.mespacio
+		{	margin-bottom:10px;
+		}
+		.mybtn
+		{	width:100%;
+		}
+		.myctrl
+		{	height:35px;
+			border-style:solid;
+			border-radius:5px;
+			border-color:#ddd;
+		}
+	</style>
+	<div class='container'>
+		<div class='row'>
+			<div class='col-sm-12'><input type='text' id='valor' class='myctrl'><button onclick='buscar()' class='btn btn-success'>Buscar</button></div>
+		</div>
+		<div class='row' id='results'>
+			<!--<div id='results' style='background-color:red;width:1200px'>
+			</div>-->
+		</div>
+		
+	<!--La venta de búsqueda--->
+	
+	<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" id='btn-modal'></button>
+
+	<!-- Modal -->
+	<div id="myModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+		<!-- Modal content-->
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title">BUSCADOR DE PRODUCTOS</h4>
+		  </div>
+		  <div class="modal-body">
+			<div style='text-align:center'>
+				
+				<div id='carrito'></div>
+				
+			</div>
+		  </div>
+		  <div class="modal-footer">
+			<input type='text' id='dni' placeholder='DNI' value=""><input type='password' id='clave' placeholder='Clave' value="">
+		  </div>
+		  
+		  <div class="modal-footer">
+			<button class='btn btn-success' onclick='validarCliente()'>C O M P R A R</button>
+			<button type="button" class="btn btn-default" data-dismiss="modal" id='btn-close'>Close</button>
+		  </div>
+		</div>
+
+	  </div>
+	</div>
+	
+	<script src="/../js/jquery-2.1.4.min.js"></script>
+	<script src="/../js/bootstrap.min.js"></script>
+	<script src="/../js/frmventa.js"></script>
+	
+</body>
+
+</html>
